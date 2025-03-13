@@ -1,5 +1,6 @@
 #pragma once
 #include "windows.h"
+int x1 = 620 , x2 = 250, x3 = 660, x4 = 250;
 
 namespace gra {
 
@@ -39,6 +40,8 @@ namespace gra {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
 
 	protected:
 
@@ -59,6 +62,8 @@ namespace gra {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -101,62 +106,70 @@ namespace gra {
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->BackColor = System::Drawing::Color::White;
+			this->pictureBox1->Location = System::Drawing::Point(13, 13);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(x1*2, x2*2);
+			this->pictureBox1->TabIndex = 4;
+			this->pictureBox1->TabStop = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Gray;
 			this->ClientSize = System::Drawing::Size(1264, 601);
-			MyForm::Width = 1280;
-			MyForm::Height = 640;
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 
-		int x1 = 600, x2 = 320, x3 = 680, x4 = 320;
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
-	{ Graphics^ g = Graphics::FromHwnd(this->Handle);
+	{ Graphics^ g = pictureBox1->CreateGraphics();
 		for (size_t i = 0; i < 1; i++)
-		{ 	g->DrawLine(gcnew Pen(Color::Gray), x1, x2, x3, x4); //Линия
+		{ 	g->DrawLine(gcnew Pen(Color::White,3), x1-20, x2, x1+20, x4); //Линия
 			x2 -= 10; x4 -= 10;
-			g->DrawLine(gcnew Pen(Color::White), x1, x2, x3, x4); //Линия
+			g->DrawLine(gcnew Pen(Color::Green,3), x1-20, x2, x1+20, x4); //Линия
 		}
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		Graphics^ g = Graphics::FromHwnd(this->Handle);
+		Graphics^ g = pictureBox1->CreateGraphics();
 		for (size_t i = 0; i < 1; i++)
-		{ g->DrawLine(gcnew Pen(Color::Gray), x1, x2, x3, x4); //Линия
+		{ g->DrawLine(gcnew Pen(Color::White,3), x1-20, x2, x1 + 20, x4); //Линия
 			x1 += 10;
 			x3 += 10;
-			g->DrawLine(gcnew Pen(Color::White), x1, x2, x3, x4); //Линия
+			g->DrawLine(gcnew Pen(Color::Green, 3), x1-20, x2, x1 + 20, x4); //Линия
 		}
 	}
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	Graphics^ g = Graphics::FromHwnd(this->Handle);
+	Graphics^ g = pictureBox1->CreateGraphics();
 	for (size_t i = 0; i < 1; i++)
 	{
-		g->DrawLine(gcnew Pen(Color::Gray), x1, x2, x3, x4); //Линия
+		g->DrawLine(gcnew Pen(Color::White, 3), x1-20, x2, x1 + 20, x4); //Линия
 		x2 += 10;
 		x4 += 10;
-		g->DrawLine(gcnew Pen(Color::White), x1, x2, x3, x4); //Линия
+		g->DrawLine(gcnew Pen(Color::Green, 3), x1-20, x2, x1 + 20, x4); //Линия
 	}
+	
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	Graphics^ g = Graphics::FromHwnd(this->Handle);
+	Graphics^ g = pictureBox1->CreateGraphics();
 	for (size_t i = 0; i < 1; i++)
 	{
-
-		g->DrawLine(gcnew Pen(Color::Gray), x1, x2, x3, x4); //Линия
+	g->DrawLine(gcnew Pen(Color::White, 3), x1-20, x2, x1 + 20, x4); //Линия
 		x1 -= 10;
 		x3 -= 10;
-		g->DrawLine(gcnew Pen(Color::White), x1, x2, x3, x4); //Линия
+		g->DrawLine(gcnew Pen(Color::Green, 3), x1-20, x2, x1 + 20, x4); //Линия
 	}
 }
 };
